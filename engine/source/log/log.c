@@ -5,19 +5,19 @@ int logtofile(char* string, int type) {
 	logptr = fopen("log/log.log", "a+");
 	char* typeID;
 	switch (type) {
-		case INFO:
+		case INF:
 			typeID = "INFO";
 			break;
 
-		case WARN:
+		case WRN:
 			typeID = "WARN";
 			break;
 			
-		case ERROR:
+		case ERR:
 			typeID = "ERROR";
 			break;
 			
-		case SEVERE:
+		case SVR:
 			typeID = "SEVERE";
 			break;
 	}

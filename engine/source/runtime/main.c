@@ -5,16 +5,13 @@ int gameLoop = 1;
 int main(int argc, char* argv[]) {
 	int framerate = 60;
 
+	initLog();
+
 	if (initRender() == 1) {
 		return 0;
 	}
 
-	initLog();
-
-	logtofile("Big!", INFO);
-	logtofile("Big!", WARN);
-	logtofile("Big!", ERROR);
-	logtofile("Big!", SEVERE);
+	
 
 	while (gameLoop) {
 		
@@ -22,11 +19,13 @@ int main(int argc, char* argv[]) {
 
 		processEvents(event);
 
+		render();
+
 		SDL_Delay(1000/framerate);
 		//objects[0]->angle++;
 	}
 
-	SDL_Quit();
+	
 
 	cleanEngine();
 

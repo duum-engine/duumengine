@@ -2,10 +2,10 @@
 #define LOG_LOG_H
 
 enum level {
-	INFO,
-	WARN,
-	ERROR,
-	SEVERE
+	INF,
+	WRN,
+	ERR,
+	SVR
 };
 
 int logtofile(char* string, int type);

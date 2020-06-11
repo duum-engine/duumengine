@@ -16,5 +16,5 @@ int initLog() {
 
 	char time[30];
 	sprintf(time, "Current day is: %d/%d/%d", timeinfo->tm_mday, timeinfo->tm_mon, (timeinfo->tm_year + 1900));
-	logtofile(time, INFO);
+	logtofile(time, INF);
 }
