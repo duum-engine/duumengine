@@ -1,0 +1,1 @@
+stub so that the game can run inside this folder, as if the default image cannot be found the engine SHITS THE FUCK as it fails to render, and then closes to stop any issues as usually when an image doesnt get rendered it means theres some segfaulty shit on the horizon and either the engine or i am going to break down

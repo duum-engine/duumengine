@@ -1,0 +1,8 @@
+
+a.out
+
+*.sublime-project
+
+*.sublime-workspace
+
+windows/a.exe
