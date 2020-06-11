@@ -1,5 +1,3 @@
-#include <stdio.h>
-
 #include "../../include/engine.h"
 
 SDL_Window* window;

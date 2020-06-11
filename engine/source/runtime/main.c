@@ -1,5 +1,3 @@
-#include <stdio.h>
-
 #include "../../include/engine.h"
 
 int gameLoop = 1;
@@ -10,6 +8,13 @@ int main(int argc, char* argv[]) {
 	if (initRender() == 1) {
 		return 0;
 	}
+
+	initLog();
+
+	logtofile("Big!", INFO);
+	logtofile("Big!", WARN);
+	logtofile("Big!", ERROR);
+	logtofile("Big!", SEVERE);
 
 	while (gameLoop) {
 		
@@ -23,6 +28,7 @@ int main(int argc, char* argv[]) {
 
 	SDL_Quit();
 
+	cleanEngine();
 
 	return 0;
 }

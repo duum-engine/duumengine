@@ -3,11 +3,15 @@
 
 RENDER = engine/source/renderer/init.c
 
-RUNTIME = engine/source/runtime/main.c
+RUNTIME = engine/source/runtime/main.c \
+engine/source/runtime/clean.c
 
 EVENT = engine/source/event/event.c
 
-CSRC = $(RENDER) $(RUNTIME) $(EVENT)
+LOG = engine/source/log/log.c \
+engine/source/log/init.c
+
+CSRC = $(RENDER) $(RUNTIME) $(EVENT) $(LOG)
 
 
 #LCC is our linux compiler
@@ -28,8 +32,8 @@ WSFLAGS = -ldinput8 -ldxguid -ldxerr8 -luser32 -lgdi32 -lwinmm -limm32 -lole32 -
 
 
 
-a.out : $(CSRC)
+a.out :
 	$(LCC) $(CSRC) $(LCFLAGS)
 
-a.exe : $(CSRC)
+a.exe :
 	$(WCC) $(CSRC) $(WCFLAGS) $(WSFLAGS)
