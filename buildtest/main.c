@@ -4,8 +4,8 @@
 #include <SDL2/SDL_mixer.h>
 #include <SDL2/SDL_ttf.h>
 
-#define WIDTH 800
-#define HEIGHT 540
+#define WIDTH 1280
+#define HEIGHT 720
 #define IMG_PATH "Duum1.png"
 
 // get text working
@@ -25,6 +25,7 @@ void get_text_and_rect(SDL_Renderer *renderer, int x, int y, char *text,
     rect->w = text_width;
     rect->h = text_height;
 }
+int f;
 
 int main (int argc, char *argv[]) {
 
@@ -69,7 +70,7 @@ int main (int argc, char *argv[]) {
     // keep application running long enough to hear the sound
 	// create the window and renderer
 	// note that the renderer is accelerated
-	win = SDL_CreateWindow("DOOM", 100, 100, WIDTH, HEIGHT, 0);
+	win = SDL_CreateWindow("DUUM", 100, 100, WIDTH, HEIGHT, 0);
 	renderer = SDL_CreateRenderer(win, -1, SDL_RENDERER_ACCELERATED);
     // initialize SDL_TTF
     TTF_Init();
@@ -80,27 +81,35 @@ int main (int argc, char *argv[]) {
     }
     get_text_and_rect(renderer, 20, HEIGHT - 60, "DuuM",font, &texture1, &rect1);
     get_text_and_rect(renderer, 20, rect1.y + rect1.h, "version 0.0.0.0.0.0.0.0.0.0.0.0.0.1", font, &texture2, &rect2);
-	
+	// toggle fullscreen
+
 	// load images
 	img = IMG_LoadTexture(renderer, IMG_PATH);
 	SDL_QueryTexture(img, NULL, NULL, &w, &h); // get the width and height of the texture
 	// put the location where we want the texture to be drawn into a rectangle
 	// I'm also scaling the texture 2x simply by setting the width and height
-	SDL_Rect texr; texr.x = WIDTH/50; texr.y = HEIGHT/50; texr.w = w*0.802; texr.h = h*0.8; 
+	SDL_Rect texr; texr.x = WIDTH/200; texr.y = HEIGHT/200; texr.w = w*HEIGHT / 1080; texr.h = h*WIDTH / 1920; 
 	
 	// main loop
-
 	while (1) {
 		
 		// event handling
 		SDL_Event e;
+        SDL_DisplayMode dm;
 		if ( SDL_PollEvent(&e) ) {
-			if (e.type == SDL_QUIT)
-				break;
-			else if (e.type == SDL_KEYUP && e.key.keysym.sym == SDLK_ESCAPE)
-				break;
+		if (e.type == SDL_KEYUP && e.key.keysym.sym == SDLK_f && f == 1) {
+            SDL_SetWindowFullscreen(win, SDL_WINDOW_FULLSCREEN);
+            f = 0;
+            SDL_Delay(1000);
 		} 
-		
+        else if (e.type == SDL_KEYUP && e.key.keysym.sym == SDLK_ESCAPE) {
+            break;
+        }
+        else if (e.type == SDL_KEYUP && e.key.keysym.sym == SDLK_f && f == 0) {
+            SDL_SetWindowFullscreen(win, 0);
+            f = 1;
+            SDL_Delay(1000);
+        }}
 		// clear the screen
 		SDL_RenderClear(renderer);
 		// copy the texture to the rendering context
