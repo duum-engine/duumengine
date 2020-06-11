@@ -6,3 +6,5 @@ a.out
 *.sublime-workspace
 
 windows/a.exe
+
+*.swp
