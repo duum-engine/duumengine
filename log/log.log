@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 15:20:21 [INFO] Current day is: 12/5/2020
 15:20:21 [INFO] Starting SDL
 15:20:21 [INFO] Starting SDL Audio system
@@ -9,3 +10,14 @@
 15:20:25 [INFO] Destroying renderer
 15:20:25 [INFO] Destroying window
 15:20:25 [INFO] closing window
+=======
+19:47:59 [INFO] Current day is: 12/5/2020
+19:47:59 [INFO] Starting SDL
+19:48:0 [INFO] Starting SDL Audio system
+19:48:0 [INFO] Creating window
+19:48:0 [INFO] Creating renderer
+19:48:0 [INFO] Creating OpenGL context
+19:48:0 [INFO] Initialising GLEW
+19:48:0 [INFO] Loading shaders
+19:48:0 [INFO] Compiling shaders
+>>>>>>> Stashed changes

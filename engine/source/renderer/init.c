@@ -77,8 +77,8 @@ float vertices[6] = {
 
 GLuint VBO;
 
-char fragmentShaderCode[512];
-char vertexShaderCode[512];
+GLchar fragmentShaderCode[512];
+GLchar vertexShaderCode[512];
 
 GLuint vertexShader;
 GLuint fragmentShader;
@@ -90,6 +90,7 @@ int createVBO() {
 }
 
 int loadShaders() {
+	logtofile("Loading shaders", INF);
 	FILE *shaderptr;
 	size_t size;
 
@@ -109,18 +110,20 @@ int loadShaders() {
 
 	fread(vertexShaderCode, 1, 512, shaderptr);
 
-
 	return 0;
 }
 
 int compileShaders() {
+	logtofile("Compiling shaders", INF);
 	GLint status;
 
+
+
 	vertexShader = glCreateShader(GL_VERTEX_SHADER);
-	glShaderSource(vertexShader, 1, (const GLchar**)&vertexShaderCode, NULL);
+	glShaderSource(vertexShader, 1, (const GLchar**)vertexShaderCode, NULL);
 
 	fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-	glShaderSource(fragmentShader, 1, (const GLchar**)&fragmentShaderCode, NULL);
+	glShaderSource(fragmentShader, 1, (const GLchar**)fragmentShaderCode, NULL);
 
 	glCompileShader(vertexShader);
 	glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &status);
@@ -129,7 +132,7 @@ int compileShaders() {
 		logtofile("Vertex shader compiling failure, error:", SVR);
 		char buffer[512];
 		glGetShaderInfoLog(vertexShader, 512, NULL, buffer);
-		logtofile(buffer, SVR);
+		logtofile(buffer, ERR);
 		return 1;
 	}
 
@@ -140,7 +143,7 @@ int compileShaders() {
 		logtofile("Fragment shader compiling failure, error:", SVR);
 		char buffer[512];
 		glGetShaderInfoLog(fragmentShader, 512, NULL, buffer);
-		logtofile(buffer, SVR);
+		logtofile(buffer, ERR);
 		return 1;
 	}
 
