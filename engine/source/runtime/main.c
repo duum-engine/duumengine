@@ -2,23 +2,21 @@
 
 int gameLoop = 1;
 
+
+
 int main(int argc, char* argv[]) {
 	int framerate = 60;
 
 	initLog();
-<<<<<<< Updated upstream
 
-=======
->>>>>>> Stashed changes
 	if (initRender() == 1) {
+		cleanEngine();
 		return 0;
 	}
 
-<<<<<<< Updated upstream
-	
-=======
-	startaudio();
->>>>>>> Stashed changes
+
+	//startaudio();
+
 
 	while (gameLoop) {
 		
@@ -31,11 +29,6 @@ int main(int argc, char* argv[]) {
 		SDL_Delay(1000/framerate);
 		//objects[0]->angle++;
 	}
-
-	
-<<<<<<< Updated upstream
-
-	cleanEngine();
 
 	cleanEngine();
 	logtofile("closing window", INF);

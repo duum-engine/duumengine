@@ -3,9 +3,8 @@
 
 FILE *logptr;
 
-<<<<<<< Updated upstream
+
 int initLog();
-=======
+
 int initLog();
 int closeLog();
->>>>>>> Stashed changes

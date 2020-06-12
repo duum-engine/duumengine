@@ -1,23 +1,7 @@
-<<<<<<< Updated upstream
-0:2:25 [INFO] Current day is: 12/5/2020
-0:2:25 [INFO] Starting SDL
-0:2:26 [INFO] Creating window
-0:2:26 [INFO] Creating renderer
-0:2:27 [INFO] Creating OpenGL context
-0:2:27 [INFO] Initialising GLEW
-0:2:28 [INFO] Destroying OpenGL context
-0:2:28 [INFO] Destroying renderer
-0:2:28 [INFO] Destroying window
-=======
-13:15:7 [INFO] Current day is: 12/5/2020
-13:15:7 [INFO] Starting SDL
-13:15:7 [INFO] Starting SDL Audio system
-13:15:7 [INFO] Creating window
-13:15:7 [INFO] Creating renderer
-13:15:7 [INFO] Creating OpenGL context
-13:15:7 [INFO] Initialising GLEW
-13:15:11 [INFO] Destroying OpenGL context
-13:15:11 [INFO] Destroying renderer
-13:15:11 [INFO] Destroying window
-13:15:11 [INFO] closing window
->>>>>>> Stashed changes
+18:57:17 [INFO] Current day is: 12/5/2020
+18:57:17 [INFO] Starting SDL
+18:57:21 [INFO] Starting SDL Audio system
+18:57:21 [INFO] Creating window
+18:57:21 [INFO] Creating renderer
+18:57:21 [INFO] Creating OpenGL context
+18:57:21 [INFO] Initialising GLEW

@@ -6,3 +6,9 @@ int initRender();
 SDL_Window* window;
 SDL_Renderer* renderer;
 SDL_GLContext context;
+
+bool fullscreen;
+
+int createVBO();
+int loadShaders();
+int compileShaders();
