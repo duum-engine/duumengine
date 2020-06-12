@@ -13,7 +13,6 @@ int initRender() {
 	if (SDL_Init(SDL_INIT_EVERYTHING) != 0) {
 		sprintf(error, "SDL Init failure, error: %s\n", SDL_GetError());
 		logtofile(error, SVR);
-
 		return 1;
 	}
 
@@ -37,15 +36,9 @@ int initRender() {
 	if (renderer == NULL) {
 		sprintf(error, "SDL renderer creation failure, error: %s\n", SDL_GetError());
 		logtofile(error, SVR);
-
 		return 1;
 	}
 
-	logtofile("Creating OpenGL context", INF);
-	context = SDL_GL_CreateContext(window);
-	if (context == NULL) {
-		sprintf(error, "GL context creation failure, error: %s\n", SDL_GetError());
-		logtofile(error, SVR);
 		return 1;
 	}
 

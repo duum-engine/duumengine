@@ -14,7 +14,6 @@ EVENT = engine/source/event/event.c
 LOG = engine/source/log/log.c \
 engine/source/log/init.c
 
-
 CSRC = $(RENDER) $(RUNTIME) $(AUDIO) $(EVENT) $(LOG)
 
 

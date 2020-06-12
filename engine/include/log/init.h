@@ -3,8 +3,5 @@
 
 FILE *logptr;
 
-
-int initLog();
-
 int initLog();
 int closeLog();
