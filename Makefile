@@ -6,13 +6,22 @@ engine/source/renderer/render.c
 
 RUNTIME = engine/source/runtime/main.c \
 engine/source/runtime/clean.c
+<<<<<<< Updated upstream
+=======
+
+AUDIO = engine/source/audio/audio.c 
+>>>>>>> Stashed changes
 
 EVENT = engine/source/event/event.c
 
 LOG = engine/source/log/log.c \
 engine/source/log/init.c
 
+<<<<<<< Updated upstream
 CSRC = $(RENDER) $(RUNTIME) $(EVENT) $(LOG)
+=======
+CSRC = $(RENDER) $(RUNTIME) $(AUDIO) $(EVENT) $(LOG)
+>>>>>>> Stashed changes
 
 
 #LCC is our linux compiler

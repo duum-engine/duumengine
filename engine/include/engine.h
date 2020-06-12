@@ -18,6 +18,7 @@
 
 #include "render.h"
 #include "runtime.h"
+#include "audio.h"
 #include "event.h"
 #include "config.h"
 #include "log.h"

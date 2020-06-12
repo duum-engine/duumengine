@@ -6,12 +6,19 @@ int main(int argc, char* argv[]) {
 	int framerate = 60;
 
 	initLog();
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 	if (initRender() == 1) {
 		return 0;
 	}
 
+<<<<<<< Updated upstream
 	
+=======
+	startaudio();
+>>>>>>> Stashed changes
 
 	while (gameLoop) {
 		
@@ -26,8 +33,14 @@ int main(int argc, char* argv[]) {
 	}
 
 	
+<<<<<<< Updated upstream
 
 	cleanEngine();
+=======
+>>>>>>> Stashed changes
 
+	cleanEngine();
+	logtofile("closing window", INF);
+	
 	return 0;
 }

@@ -11,6 +11,16 @@ int initRender() {
 	if (SDL_Init(SDL_INIT_EVERYTHING) != 0) {
 		sprintf(error, "SDL Init failure, error: %s\n", SDL_GetError());
 		logtofile(error, SVR);
+<<<<<<< Updated upstream
+=======
+		return 1;
+	}
+
+	logtofile("Starting SDL Audio system", INF);
+	if (audioerror == 1) {
+		sprintf(error, "SDL Audio Init failure, error: %s\n", SDL_GetError());
+		logtofile(error, SVR);
+>>>>>>> Stashed changes
 		return 1;
 	}
 
@@ -27,6 +37,7 @@ int initRender() {
 	if (renderer == NULL) {
 		sprintf(error, "SDL renderer creation failure, error: %s\n", SDL_GetError());
 		logtofile(error, SVR);
+<<<<<<< Updated upstream
 		return 1;
 	}
 
@@ -38,6 +49,19 @@ int initRender() {
 		return 1;
 	}
 
+=======
+		return 1;
+	}
+
+	logtofile("Creating OpenGL context", INF);
+	context = SDL_GL_CreateContext(window);
+	if (context == NULL) {
+		sprintf(error, "GL context creation failure, error: %s\n", SDL_GetError());
+		logtofile(error, SVR);
+		return 1;
+	}
+
+>>>>>>> Stashed changes
 	logtofile("Initialising GLEW", INF);
 	glewExperimental = GL_TRUE;
 	GLenum err = glewInit();
