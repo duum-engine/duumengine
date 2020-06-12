@@ -9,6 +9,8 @@ SDL_GLContext context;
 
 bool fullscreen;
 
+
+int createVAO();
 int createVBO();
 int loadShaders();
 int compileShaders();

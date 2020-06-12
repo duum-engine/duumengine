@@ -1,11 +1,11 @@
-20:5:52 [INFO] Current day is: 12/5/2020
-20:5:52 [INFO] Starting SDL
-20:5:52 [INFO] Starting SDL Audio system
-20:5:52 [INFO] Creating window
-20:5:53 [INFO] Creating renderer
-20:5:53 [INFO] Initialising GLEW
-20:5:53 [INFO] Compiling shaders
-20:5:58 [INFO] Destroying OpenGL context
-20:5:58 [INFO] Destroying renderer
-20:5:58 [INFO] Destroying window
-20:5:58 [INFO] closing window
+20:11:3 [INFO] Current day is: 12/5/2020
+20:11:3 [INFO] Starting SDL
+20:11:3 [INFO] Starting SDL Audio system
+20:11:3 [INFO] Creating window
+20:11:3 [INFO] Creating renderer
+20:11:3 [INFO] Initialising GLEW
+20:11:3 [INFO] Compiling shaders
+20:11:45 [INFO] Destroying OpenGL context
+20:11:45 [INFO] Destroying renderer
+20:11:45 [INFO] Destroying window
+20:11:45 [INFO] closing window

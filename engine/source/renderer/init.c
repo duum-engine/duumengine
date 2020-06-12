@@ -48,16 +48,9 @@ int initRender() {
 		return 1;
 	}
 
-	/*GLuint vertexBuffer;
-	glGenBuffers(1, &vertexBuffer);
-
-	printf("%u\n", vertexBuffer);*/
+	createVAO();
 
 	createVBO();
-
-	/*if (loadShaders() == 1) {
-		return 1;
-	}*/
 
 	if (compileShaders() == 1) {
 		return 1;
@@ -85,6 +78,16 @@ GLchar* vertexShaderCode[4] ={"#version 150 core\n",
 
 GLuint vertexShader;
 GLuint fragmentShader;
+GLuint shaderProgram;
+GLint posAttrib;
+
+GLuint vao;
+
+int createVAO() {
+	glGenVertexArrays(1, &vao);
+	glBindVertexArray(vao);
+
+}
 
 int createVBO() {
 	glGenBuffers(1, &VBO);
@@ -124,6 +127,18 @@ int compileShaders() {
 		logtofile(buffer, ERR);
 		return 1;
 	}
+
+	shaderProgram = glCreateProgram();
+	glAttachShader(shaderProgram, vertexShader);
+	glAttachShader(shaderProgram, fragmentShader);
+
+	glLinkProgram(shaderProgram);
+	glUseProgram(shaderProgram);
+
+	posAttrib = glGetAttribLocation(shaderProgram, "position");
+	glVertexAttribPointer(posAttrib, 2, GL_FLOAT, GL_FALSE, 0, 0);
+	glEnableVertexAttribArray(posAttrib);
+
 
 	return 0;
 }
