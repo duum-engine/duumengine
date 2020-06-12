@@ -1,6 +1,10 @@
 #include "../../include/engine.h"
 
 
+//logtofile is a function that takes a string e.g "hello there" and a type of log, e.g INF or SVR
+//an example usage would be logtofile("hello there", INF);
+
+
 int logtofile(char* string, int type) {
 	logptr = fopen("log/log.log", "a+");
 	char* typeID;

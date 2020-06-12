@@ -36,8 +36,6 @@ int main(int argc, char* argv[]) {
 <<<<<<< Updated upstream
 
 	cleanEngine();
-=======
->>>>>>> Stashed changes
 
 	cleanEngine();
 	logtofile("closing window", INF);
