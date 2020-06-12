@@ -39,9 +39,6 @@ int initRender() {
 		return 1;
 	}
 
-		return 1;
-	}
-
 	logtofile("Initialising GLEW", INF);
 	glewExperimental = GL_TRUE;
 	GLenum err = glewInit();
@@ -58,9 +55,9 @@ int initRender() {
 
 	createVBO();
 
-	if (loadShaders() == 1) {
+	/*if (loadShaders() == 1) {
 		return 1;
-	}
+	}*/
 
 	if (compileShaders() == 1) {
 		return 1;
@@ -77,8 +74,14 @@ float vertices[6] = {
 
 GLuint VBO;
 
-GLchar fragmentShaderCode[512];
-GLchar vertexShaderCode[512];
+GLchar* fragmentShaderCode[4] ={"#version 150 core\n",
+"out vec4 outColor;\n",
+"void main()\n",
+"{outColor = vec4(1.0, 1.0, 1.0, 1.0);}\n"};
+GLchar* vertexShaderCode[4] ={"#version 150 core\n",
+"in vec2 position;\n",
+"void main()\n",
+"{gl_Position = vec4(position, 0.0, 1.0);}"};
 
 GLuint vertexShader;
 GLuint fragmentShader;
@@ -89,41 +92,16 @@ int createVBO() {
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 }
 
-int loadShaders() {
-	logtofile("Loading shaders", INF);
-	FILE *shaderptr;
-	size_t size;
-
-	shaderptr = fopen("engine/res/shaders/shader.fs", "r");
-	if (shaderptr == NULL) {
-		logtofile("Fragment shader CANNOT be found! this is bad :(", SVR);
-		return 1;
-	}
-
-	fread(fragmentShaderCode, 1, 512, shaderptr);
-
-	shaderptr = fopen("engine/res/shaders/shader.vs", "r");
-	if (shaderptr == NULL) {
-		logtofile("Vertex shader CANNOT be found! this is bad :(", SVR);
-		return 1;
-	}
-
-	fread(vertexShaderCode, 1, 512, shaderptr);
-
-	return 0;
-}
-
 int compileShaders() {
 	logtofile("Compiling shaders", INF);
 	GLint status;
 
 
-
 	vertexShader = glCreateShader(GL_VERTEX_SHADER);
-	glShaderSource(vertexShader, 1, (const GLchar**)vertexShaderCode, NULL);
+	glShaderSource(vertexShader, 4, (const GLchar**)vertexShaderCode, NULL);
 
 	fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-	glShaderSource(fragmentShader, 1, (const GLchar**)fragmentShaderCode, NULL);
+	glShaderSource(fragmentShader, 4, (const GLchar**)fragmentShaderCode, NULL);
 
 	glCompileShader(vertexShader);
 	glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &status);
