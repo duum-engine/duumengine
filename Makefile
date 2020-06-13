@@ -2,7 +2,9 @@
 #engine components, just for clarity sake
 
 RENDER = engine/source/renderer/init.c \
-engine/source/renderer/render.c
+engine/source/renderer/render.c \
+engine/source/renderer/mesh.c \
+engine/source/renderer/camera.c
 
 RUNTIME = engine/source/runtime/main.c \
 engine/source/runtime/clean.c

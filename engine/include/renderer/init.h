@@ -14,3 +14,17 @@ int createVAO();
 int createVBO();
 int loadShaders();
 int compileShaders();
+
+float vertices[6];
+
+
+GLchar* fragmentShaderCode[4];
+GLchar* vertexShaderCode[5];
+
+GLuint vertexShader;
+GLuint fragmentShader;
+GLuint shaderProgram;
+GLint posAttrib;
+
+GLuint vao;
+GLuint VBO;

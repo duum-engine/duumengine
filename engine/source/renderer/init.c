@@ -6,6 +6,34 @@ SDL_GLContext context;
 
 bool fullscreen = false;
 
+float vertices[6] = {
+     0.3f,  0.0f, // Vertex 1 (X, Y)
+     -1.0f, -0.1f, // Vertex 2 (X, Y)
+    -1.0f, 1.0f  // Vertex 3 (X, Y)
+};
+
+
+
+GLchar* fragmentShaderCode[4] ={"#version 150 core\n",
+"out vec4 outColor;\n",
+"void main()\n",
+"{outColor = vec4(1.0, 1.0, 1.0, 1.0);}\n"};
+
+GLchar* vertexShaderCode[5] ={"#version 150 core\n",
+"in vec2 position;\n",
+"uniform mat4 trans;\n"
+"void main()\n",
+"{gl_Position = trans * vec4(position, 0.0, 1.0);}"};
+
+GLuint vertexShader;
+GLuint fragmentShader;
+GLuint shaderProgram;
+GLint posAttrib;
+
+GLuint vao;
+GLuint VBO;
+
+
 
 int initRender() {
 	char* error;
@@ -52,36 +80,14 @@ int initRender() {
 
 	createVBO();
 
-	if (compileShaders() == 1) {
+	/*if (compileShaders() == 1) {
 		return 1;
-	}
+	}*/
 
 	return 0;
 }
 
-float vertices[6] = {
-     0.0f,  0.5f, // Vertex 1 (X, Y)
-     0.5f, -0.5f, // Vertex 2 (X, Y)
-    -0.5f, -0.5f  // Vertex 3 (X, Y)
-};
 
-GLuint VBO;
-
-GLchar* fragmentShaderCode[4] ={"#version 150 core\n",
-"out vec4 outColor;\n",
-"void main()\n",
-"{outColor = vec4(1.0, 1.0, 1.0, 1.0);}\n"};
-GLchar* vertexShaderCode[4] ={"#version 150 core\n",
-"in vec2 position;\n",
-"void main()\n",
-"{gl_Position = vec4(position, 0.0, 1.0);}"};
-
-GLuint vertexShader;
-GLuint fragmentShader;
-GLuint shaderProgram;
-GLint posAttrib;
-
-GLuint vao;
 
 int createVAO() {
 	glGenVertexArrays(1, &vao);
@@ -101,7 +107,7 @@ int compileShaders() {
 
 
 	vertexShader = glCreateShader(GL_VERTEX_SHADER);
-	glShaderSource(vertexShader, 4, (const GLchar**)vertexShaderCode, NULL);
+	glShaderSource(vertexShader, 5, (const GLchar**)vertexShaderCode, NULL);
 
 	fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
 	glShaderSource(fragmentShader, 4, (const GLchar**)fragmentShaderCode, NULL);
