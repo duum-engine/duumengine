@@ -16,7 +16,7 @@
 #include <GL/gl.h>
 #include <SDL2/SDL_opengl.h>
 
-#include "cglm/cglm.h"
+#include <cglm/cglm.h>
 
 #include "log.h"
 #include "render.h"
