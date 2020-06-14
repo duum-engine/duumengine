@@ -15,11 +15,17 @@ int createVBO();
 int loadShaders();
 int compileShaders();
 
-float vertices[6];
+float vertices[18];
 
+typedef struct {
+	GLchar** code;
+	int lineCount;
+} shader;
 
-GLchar* fragmentShaderCode[4];
-GLchar* vertexShaderCode[5];
+shader loadLines(FILE* file, shader* shader);
+
+shader fragmentShaderCode;
+shader vertexShaderCode;
 
 GLuint vertexShader;
 GLuint fragmentShader;

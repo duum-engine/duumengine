@@ -17,12 +17,12 @@ int main(int argc, char* argv[]) {
 	//startaudio();
 	loadOBJ("engine/res/models/Link Adult.obj");
 
-	transform(Z_AX);
-
 	while (gameLoop) {	
 		SDL_Event event;
 
 		processEvents(event);
+
+		transform();
 
 		render();
 

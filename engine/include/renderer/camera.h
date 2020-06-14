@@ -7,6 +7,12 @@ enum axis {
 	Z_AX
 };
 
-int transform(int axis);
+int transform();
 
-GLint uniTrans;
+int initTransformations();
+
+int modelMatrix();
+
+mat4 model;
+
+GLint uniModel;

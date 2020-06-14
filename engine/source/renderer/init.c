@@ -6,24 +6,21 @@ SDL_GLContext context;
 
 bool fullscreen = false;
 
-float vertices[6] = {
-     0.3f,  0.0f, // Vertex 1 (X, Y)
-     -1.0f, -0.1f, // Vertex 2 (X, Y)
-    -1.0f, 1.0f  // Vertex 3 (X, Y)
+float vertices[18] = {
+    -0.5f,  0.5f, 1.0f, // Top-left
+     0.5f,  0.5f, 0.0f, // Top-right
+     0.5f, -0.5f, 0.0f, // Bottom-right
+
+     0.5f, -0.5f, 0.0f, // Bottom-right
+    -0.5f, -0.5f, 1.0f, // Bottom-left
+    -0.5f,  0.5f, 1.0f  // Top-left
 };
 
 
 
-GLchar* fragmentShaderCode[4] ={"#version 150 core\n",
-"out vec4 outColor;\n",
-"void main()\n",
-"{outColor = vec4(1.0, 1.0, 1.0, 1.0);}\n"};
+shader fragmentShaderCode;
 
-GLchar* vertexShaderCode[5] ={"#version 150 core\n",
-"in vec2 position;\n",
-"uniform mat4 trans;\n"
-"void main()\n",
-"{gl_Position = trans * vec4(position, 0.0, 1.0);}"};
+shader vertexShaderCode;
 
 GLuint vertexShader;
 GLuint fragmentShader;
@@ -36,6 +33,7 @@ GLuint VBO;
 
 
 int initRender() {
+	logtofile("initialising renderer!", INF);
 	char* error;
 	logtofile("Starting SDL", INF);
 	if (SDL_Init(SDL_INIT_EVERYTHING) != 0) {
@@ -80,10 +78,19 @@ int initRender() {
 
 	createVBO();
 
-	/*if (compileShaders() == 1) {
+	if (loadShaders() == 1) {
 		return 1;
-	}*/
+	}
 
+	if (compileShaders() == 1) {
+		return 1;
+	}
+
+	initTransformations();
+
+	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+
+	logtofile("finished initialising renderer by some miracle!!", INF);
 	return 0;
 }
 
@@ -101,16 +108,55 @@ int createVBO() {
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 }
 
+int loadShaders() {
+	logtofile("loading shaders!", INF);
+	FILE *fileptr;
+	GLchar **code;
+	fileptr = fopen("engine/res/shaders/shader.vs", "r");
+	if (fileptr == NULL) {
+		logtofile("vertex shader code cannot be found! this is bad :(", ERR);
+		return 1;
+	}
+
+	loadLines(fileptr, &vertexShaderCode);
+
+	fileptr = fopen("engine/res/shaders/shader.fs", "r");
+	if (fileptr == NULL) {
+		logtofile("fragment shader code cannot be found! this is bad :(", ERR);
+		return 1;
+	}
+
+	loadLines(fileptr, &fragmentShaderCode);
+
+	return 0;
+}
+
+shader loadLines(FILE* file, shader* shader) {
+	int chunksize = 256;
+
+
+	shader->code = malloc(sizeof(GLchar*));
+	shader->code[0] = malloc(sizeof(GLchar) * chunksize);
+	shader->lineCount = 0;
+
+	while(fgets(shader->code[shader->lineCount], chunksize, file) != NULL) {
+		shader->lineCount++;
+		shader->code = realloc(shader->code, sizeof(GLchar*) * (shader->lineCount + 1));
+		shader->code[shader->lineCount] = malloc(sizeof(GLchar) * chunksize);
+	}
+}
+
+
 int compileShaders() {
 	logtofile("Compiling shaders", INF);
 	GLint status;
 
 
 	vertexShader = glCreateShader(GL_VERTEX_SHADER);
-	glShaderSource(vertexShader, 5, (const GLchar**)vertexShaderCode, NULL);
+	glShaderSource(vertexShader, vertexShaderCode.lineCount, (const GLchar**)vertexShaderCode.code, NULL);
 
 	fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-	glShaderSource(fragmentShader, 4, (const GLchar**)fragmentShaderCode, NULL);
+	glShaderSource(fragmentShader, fragmentShaderCode.lineCount, (const GLchar**)fragmentShaderCode.code, NULL);
 
 	glCompileShader(vertexShader);
 	glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &status);
@@ -139,10 +185,10 @@ int compileShaders() {
 	glAttachShader(shaderProgram, fragmentShader);
 
 	glLinkProgram(shaderProgram);
-	glUseProgram(shaderProgram);
+	
 
 	posAttrib = glGetAttribLocation(shaderProgram, "position");
-	glVertexAttribPointer(posAttrib, 2, GL_FLOAT, GL_FALSE, 0, 0);
+	glVertexAttribPointer(posAttrib, 3, GL_FLOAT, GL_FALSE, 0, 0);
 	glEnableVertexAttribArray(posAttrib);
 
 

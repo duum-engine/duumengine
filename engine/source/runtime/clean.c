@@ -11,6 +11,8 @@ int cleanEngine() {
 	SDL_DestroyWindow(window);
 	logtofile("Destroying window", INF);
 
+	
+
 	TTF_Quit();
 	SDL_Quit();
 }
