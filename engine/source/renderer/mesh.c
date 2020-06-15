@@ -8,4 +8,7 @@ int loadOBJ(char* filename) {
 		logtofile(error, ERR);
 		return 0;
 	}
+	char* lineHeader[128];
+	fscanf(lineHeader, "%127s", fptr);
 }
+
